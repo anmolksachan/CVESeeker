@@ -17,7 +17,7 @@ A comprehensive tool for passive asset scanning, identifying associated CVEs, an
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/anmolksachan/CVESeeker & cd CVESeeker  
+    git clone https://github.com/anmolksachan/CVESeeker && cd CVESeeker  
     ```
 
 2. **Install the required libraries:**
