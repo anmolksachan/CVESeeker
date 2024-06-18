@@ -48,6 +48,12 @@ $ python3 cveSeeker.py --file <input_file> --project <project_name>
 ## Example
 ![image](https://github.com/anmolksachan/CVESeeker/assets/60771253/59c61407-2d94-4610-8c08-c39048b7c52a)
 
+## POC
+![CVESeekerPOCDemo-PassivenmaplikescannertofetchCVEsPOCfromgithub](https://github.com/anmolksachan/CVESeeker/assets/60771253/72e89c78-e22b-4dbf-b7eb-527bd26be4b2)
+
+## POC/ Video
+[Watch Here!](https://vimeo.com/960905849)
+
 ## License
 This project is licensed - see the LICENSE file for details.
 
