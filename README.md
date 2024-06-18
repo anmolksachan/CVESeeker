@@ -34,7 +34,7 @@ A comprehensive tool for passive asset scanning, identifying associated CVEs, an
 4. **One line installer:**
 
    ```sh
-   git clone https://github.com/anmolksachan/CVESeeker && cd CVESeeker && pip3 install -r requirements.txt && Echo "We are ready to seek sailor! " && python3 cveSeeker.py
+   git clone https://github.com/anmolksachan/CVESeeker && cd CVESeeker && pip3 install -r requirements.txt && echo "We are ready to seek sailor! " && python3 cveSeeker.py
    ```
    
 ## Usage
