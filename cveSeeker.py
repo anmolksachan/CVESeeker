@@ -90,6 +90,27 @@ print(Fore.YELLOW + f"-------------------------------")
 print(Fore.YELLOW + "\n[+] Looking for CVEs")
 cve_data = {}
 
+not_found_cves = []  # To collect CVEs not found
+
+def fetch_pocs_and_print(ip, hostnames, cve_info):
+    """Fetch POCs for CVEs and print the results."""
+    print(Fore.YELLOW + f" [+] Fetching POCs for CVEs (Total Number of CVEs identified: {len(cve_info)})")
+    found_pocs = 0
+    for cve in cve_info:
+        poc_response = requests.get(f"https://poc-in-github.motikan2010.net/api/v1/?cve_id={cve}")
+        if poc_response.status_code == 200:
+            pocs = poc_response.json().get('pocs', [])
+            if pocs:
+                found_pocs += 1
+                print(Fore.GREEN + f"  [+] POC for {cve} Found:")
+                for poc in pocs:
+                    print(Fore.CYAN + f"    {poc['html_url']}")
+            else:
+                not_found_cves.append(cve)
+        else:
+            print(Fore.RED + f"[-] Failed to fetch POCs for {cve}")
+    print(Fore.YELLOW + f"  [+] STATS: POCs found for {found_pocs} out of {len(cve_info)} identified CVEs")
+
 for ip in all_ips:
     response = requests.get(f"https://internetdb.shodan.io/{ip}")
     if response.status_code == 200:
@@ -105,20 +126,12 @@ for ip in all_ips:
             print(Fore.GREEN + f"[+] {ip}{hostname_str} (Open Ports): {', '.join(map(str, open_ports))}")
         if cve_info:
             print(Fore.RED + f"[+] {ip}{hostname_str} : {', '.join(cve_info)}")
-            print(Fore.YELLOW + " [+] Fetching POCs for CVEs")
-            for cve in cve_info:
-                poc_response = requests.get(f"https://poc-in-github.motikan2010.net/api/v1/?cve_id={cve}")
-                if poc_response.status_code == 200:
-                    pocs = poc_response.json().get('pocs', [])
-                    if pocs:
-                        print(Fore.GREEN + f"  [+] POC for {cve} Found:")
-                        for poc in pocs:
-                            print(Fore.CYAN + f"    {poc['html_url']}")
-                    else:
-                        print(Fore.RED + f"  [-] No POCs for {cve} Found, check manually!")
-                else:
-                    print(Fore.RED + f"[-] Failed to fetch POCs for {cve}")
+            fetch_pocs_and_print(ip, hostnames, cve_info)
         else:
             print(Fore.GREEN + f"[+] {ip}{hostname_str} : No CVEs Found")
     else:
         print(f"[+] {ip} : Failed to fetch CVEs")
+
+# Print CVEs not found at the end
+if not_found_cves:
+    print(Fore.RED + f"[-] CVEs not found for {', '.join(not_found_cves)}")
