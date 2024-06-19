@@ -11,6 +11,7 @@ A comprehensive tool for passive asset scanning, identifying associated CVEs, an
 - Identifies open ports for each IP.
 - Fetches CVEs for each IP.
 - Retrieves POCs for identified CVEs (Supports Github currently).
+- Reverse CVE to POC Lookup
 
 ## Installation
 
@@ -41,15 +42,19 @@ A comprehensive tool for passive asset scanning, identifying associated CVEs, an
 
 ```sh
 $ python3 cveSeeker.py --file <input_file> --project <project_name>
---file: Input file containing domains / IPs (one per line).
---project: Project name for storing results.
+--file:             Input file containing domains / IPs (one per line).
+--project:          Project name for storing results.
+-cve CVE-ID         CVE ID for fetching POCs
 ```
 
 ## Example
 ![image](https://github.com/anmolksachan/CVESeeker/assets/60771253/59c61407-2d94-4610-8c08-c39048b7c52a)
 
-## POC
+## Passive Scanner : Asset -> CVE -> POC Lookup
 ![CVESeekerPOCDemo-PassivenmaplikescannertofetchCVEsPOCfromgithub](https://github.com/anmolksachan/CVESeeker/assets/60771253/72e89c78-e22b-4dbf-b7eb-527bd26be4b2)
+
+## CVE Reverse POC Lookup
+![image](https://github.com/anmolksachan/CVESeeker/assets/60771253/8366c17e-3408-4ad8-8e2e-c27cfc4e5f9e)
 
 ## Watch Full Demo Here
 [Watch Here!](https://vimeo.com/960905849)
