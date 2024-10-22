@@ -12,6 +12,7 @@ A comprehensive tool for passive asset scanning, identifying associated CVEs, an
 - Fetches CVEs for each IP.
 - Retrieves POCs for identified CVEs (Supports Github currently).
 - Reverse CVE to POC Lookup
+- Enhanced report generation with search functionality and detailed insights.
 
 ## Installation
 
